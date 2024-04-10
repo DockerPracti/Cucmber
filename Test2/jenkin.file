@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                // Commands to build your project
+                bat'mvn clean package'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Commands to run tests
+                bat'mvn test'
+            }
+        }
+    }
+
+    post {
+        always {
+            // Cleanup or post-processing steps
+        }
+
+        success {
+            // Actions to take if the pipeline succeeds
+            echo 'Pipeline succeeded!'
+
+            // For example, you might want to deploy your application
+            // bat'mvn deploy'
+        }
+
+        failure {
+            // Actions to take if the pipeline fails
+            echo 'Pipeline failed!'
+
+            // For example, you might want to notify someone or roll back changes
+        }
+    }
+}
