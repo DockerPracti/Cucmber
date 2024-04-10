@@ -1,0 +1,55 @@
+package StepDefination;
+
+import java.time.Duration;
+import java.util.Iterator;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+
+import PageObject.OfferPa;
+import PageObject.PageObectManager;
+import Utlity.UtiCl;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class OfferPage {
+	  public UtiCl UtiClvar;
+	 public String SecondV;
+	 public  WebDriver driver;
+	 public PageObectManager pageobj;
+	 
+	public OfferPage(UtiCl UtiClvar) {
+		this.UtiClvar =UtiClvar;
+	}
+	
+	public void switchWindow() {
+		UtiClvar.genU.SwitchwindowM();
+		
+	}
+		
+	
+	
+	  @Then("User search same item {string} in offer page with Short name if exist")
+	     public void user_search_same_item_in_offer_page_with_short_name_if_exist(String tom) {
+	        
+		 OfferPa offv= UtiClvar.pageobj.getOfferobject();
+		  offv.clickLink();
+		
+		  UtiClvar.pageobj.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+		    switchWindow();
+	    	offv.searchItem(tom);
+	    	
+	         SecondV= offv.GetProduct();
+	         System.out.println(SecondV);
+	         Assert.assertEquals(SecondV, UtiClvar.FirstV);
+	         //UtiClvar.pageobj.driver.quit();
+	     }
+	  
+
+	
+	
+	
+}
