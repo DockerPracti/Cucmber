@@ -18,9 +18,9 @@ pipeline {
     }
 
     post {
-        always {
+        //always {
             // Cleanup or post-processing steps
-        }
+        //}
 
         success {
             // Actions to take if the pipeline succeeds
